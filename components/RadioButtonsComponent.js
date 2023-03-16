@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 
-function RadioButtonsComponent({ width, height, selectedOption }) {
+function RadioButtonsComponent({ rectangles, setSelectedRectangle }) {
 
-    const [selectedRectangle, setSelectedRectangle] = useState(null);
 
     function handleRadioChange(event) {
         const shapeId = event.target.value;
-        const newselectedRectangle = rectangles.find((rectangle) => rectangle.id === shapeId);
-        setSelectedRectangle(newselectedRectangle);
+        const newSelectedRectangle = rectangles.find(
+            (rectangle) => rectangle.id === shapeId
+        );
+        setSelectedRectangle(newSelectedRectangle);
+        console.log("Selected rectangle: ", newSelectedRectangle);
     }
 
     return (
-        <input
-            type="radio"
-            id="radioLightOrange"
-            name="shape"
-            value="rect2" // The value should match the corresponding shape's id
-            onChange={handleRadioChange}
-        />
-
+        <div>
+            {rectangles.map((rectangle) => (
+                <div key={rectangle.id}>
+                    <input
+                        type="radio"
+                        id={`radio-${rectangle.id}`}
+                        name="shape"
+                        value={rectangle.id}
+                        onChange={handleRadioChange}
+                    />
+                    <label htmlFor={`radio-${rectangle.id}`}>{rectangle.id}</label>
+                </div>
+            ))}
+        </div>
     );
-
 }
 
 export default RadioButtonsComponent;
