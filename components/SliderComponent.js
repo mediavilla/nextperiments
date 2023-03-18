@@ -48,8 +48,8 @@ function SliderComponent({ selectedRectangle, setSelectedRectangle, rectangles, 
             <input
                 type="range"
                 id="widthSlider"
-                min="0"
-                max="306"
+                min="10"
+                max="148"
                 step="1"
                 value={selectedRectangle.width}
                 onChange={handleWidthChange}
@@ -58,8 +58,8 @@ function SliderComponent({ selectedRectangle, setSelectedRectangle, rectangles, 
             <input
                 type="range"
                 id="heightSlider"
-                min="0"
-                max="271"
+                min="10"
+                max="135"
                 step="1"
                 value={selectedRectangle.height}
                 onChange={handleHeightChange}
