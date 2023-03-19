@@ -2,7 +2,9 @@ import React from "react";
 
 function RadioButtonsComponent({ rectangles, setSelectedRectangle, selectedRectangle }) {
 
+
     function handleRadioChange(event) {
+        console.log("EVENT: ", event);
         const shapeId = event.target.value;
         const newSelectedRectangle = rectangles.find(
             (rectangle) => rectangle.id === shapeId
@@ -15,12 +17,14 @@ function RadioButtonsComponent({ rectangles, setSelectedRectangle, selectedRecta
         <div className="grid">
             {rectangles.map((rectangle) => (
                 <div key={rectangle.id}>
+
                     <input
                         type="radio"
-                        id={`radio-${rectangle.id}`}
-                        name="shape"
+                        id={rectangle.id}
+                        name=""
                         value={rectangle.id}
-                        onChange={handleRadioChange}
+                        checked={selectedRectangle.id === rectangle.id}
+                        onChange={(e) => handleRadioChange(e)}
                     />
                     <label htmlFor={`radio-${rectangle.id}`}>{rectangle.id}</label>
                 </div>

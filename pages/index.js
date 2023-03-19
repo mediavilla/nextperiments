@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CanvasComponent from "../components/CanvasComponent"
 import RadioButtonsComponent from "../components/RadioButtonsComponent";
 import SliderComponent from "../components/SliderComponent";
+import Timeline from "../components/Timeline";
+
 
 export default function AnimationApp() {
   // Initialize rectangles state in the parent component
@@ -16,16 +18,20 @@ export default function AnimationApp() {
     // 💡 Take the first rectangle out of the array to avoid having it as a radio button option
 
 
-    { id: 'LightOrange', color: '#E2A04B', x: 416, y: 52, width: 76, height: 135, zIndex: 2 }, // DONE
+    { id: 'LightOrange', color: '#E2A04B', x: 416, y: 52, width: 76, height: 135, zIndex: 2 },
     // color: '#D57835'
-    { id: 'Orange', color: `rgba(213, 120, 53, 50%`, x: 416, y: 68, width: 91, height: 119, zIndex: 3 },// DONE
-    { id: 'Yellow', color: '#EBC04B', x: 416, y: 91, width: 128, height: 96, zIndex: 4 }, // DONE
+    { id: 'Orange', color: `rgba(213, 120, 53, 50%`, x: 416, y: 68, width: 91, height: 119, zIndex: 3 },
+    { id: 'Yellow', color: '#EBC04B', x: 416, y: 91, width: 128, height: 96, zIndex: 4 },
     { id: 'Pink', color: '#D770A0', x: 416, y: 148, width: 148, height: 39, zIndex: 5 },
     // color: '#9F2B17',
-    { id: 'Brown', color: `rgba(159, 43, 23, 50%)`, x: 416, y: 128, width: 47, height: 59, zIndex: 6 }  // DONE
+    { id: 'Brown', color: `rgba(159, 43, 23, 50%)`, x: 416, y: 128, width: 47, height: 59, zIndex: 6 }
   ]);
 
-  const [selectedRectangle, setSelectedRectangle] = useState(rectangles[0]?.id || null);
+  //  const [selectedRectangle, setSelectedRectangle] = useState(rectangles[0]?.id || null);
+
+  const [selectedRectangle, setSelectedRectangle] = useState(rectangles[0] || null);
+
+
 
   const [img, setImg] = useState(null);
 
@@ -51,6 +57,9 @@ export default function AnimationApp() {
         <CanvasComponent img={img} rectangles={rectangles} setRectangles={setRectangles} />
       </section>
       <section>
+        <Timeline rectangles={rectangles} />
+      </section>
+      <section>
         <RadioButtonsComponent rectangles={rectangles} setSelectedRectangle={setSelectedRectangle} selectedRectangle={selectedRectangle} />
       </section>
       <section>
@@ -61,8 +70,6 @@ export default function AnimationApp() {
             rectangles={rectangles}
             setRectangles={setRectangles}
           />
-
-
         )}
       </section>
     </main>
