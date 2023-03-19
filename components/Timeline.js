@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
-function Timeline(rectangles) {
+function Timeline({
+    rectangles,
+    setRectangles,
+    keyframeData,
+    setKeyframeData,
+}) {
 
-    const [selectedKeyframe, setSelectedKeyframe] = useState(null);
+    let currentRect = { ...initialRect };
+    let animationProgress = 0;
+    const animationDuration = 2000; // Animation duration in milliseconds
 
-    const [keyframeData, setKeyframeData] = useState([
-        { keyframe: 1, rectangles: [] },
-        { keyframe: 2, rectangles: [] },
-    ]);
+    function animate() {
+        if (animationProgress <= animationDuration) {
+            const t = animationProgress / animationDuration;
+            currentRect.width = initialRect.width + (finalRect.width - initialRect.width) * t;
+            currentRect.height = initialRect.height + (finalRect.height - initialRect.height) * t;
 
+            ctx.fillStyle = currentRect.color;
+            ctx.fillRect(currentRect.x, currentRect.y - currentRect.height, currentRect.width, currentRect.height);
 
-    function handleKeyframeClick(keyframe) {
-        if (keyframe === 1 || keyframe === 2) {
-            // Update the keyframe data with the current rectangle dimensions
-            const updatedKeyframeData = keyframeData.map((kf) => {
-                if (kf.keyframe === keyframe) {
-                    return { ...kf, rectangles: [...rectangles] };
-                }
-                return kf;
-            });
-
-            setKeyframeData(updatedKeyframeData);
+            animationProgress += 16.67; // 16.67 ms for 60fps
+            requestAnimationFrame(animate);
         }
-
-        // Update the selected keyframe state
-        setSelectedKeyframe(keyframe);
     }
 
+    animate();
 
-    console.log("Timeline Loaded");
+    function startAnimation() {
+        startTimestamp.current = null;
+        requestAnimationFrame(animate);
+    }
 
 
     return (
@@ -39,25 +41,40 @@ function Timeline(rectangles) {
                     <a
                         href="#"
                         role="button"
-                        className={`secondary${selectedKeyframe === 1 ? " recording" : ""}`}
-                        onClick={() => handleKeyframeClick(1)}
+                        className="primary"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (keyframeData[0].rectangles.length > 0 && keyframeData[1].rectangles.length > 0 && keyframeData[2].rectangles.length > 0) {
+                                requestAnimationFrame(animate);
+                            }
+                        }}
                     >
-                        {selectedKeyframe === 1 ? "Recording Keyframe 1" : "Record Keyframe 1"}
+                        Play
+                    </a>
+
+                </div>
+                <div>
+                    <a
+                        href="#"
+                        role="button"
+                        className="secondary"
+                    >
+                        Record Keyframe 1
                     </a>
                 </div>
                 <div>
                     <a
                         href="#"
                         role="button"
-                        className={`secondary${selectedKeyframe === 2 ? " recording" : ""}`}
-                        onClick={() => handleKeyframeClick(2)}
+                        className="secondary"
+
                     >
-                        {selectedKeyframe === 2 ? "Recording Keyframe 2" : "Record Keyframe 2"}
+                        Record Keyframe 2
                     </a>
                 </div>
                 <div>
-                    <a href="#" role="button" className="secondary outline" onClick={() => handleKeyframeClick(3)}>
-                        {selectedKeyframe === 3 ? "End Recording Keyframe 3" : "End Keyframe 3"}
+                    <a href="#" role="button" className="secondary outline" >
+                        End Keyframe 3"
                     </a>
 
                 </div>

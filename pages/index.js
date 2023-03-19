@@ -6,6 +6,7 @@ import Timeline from "../components/Timeline";
 
 
 export default function AnimationApp() {
+
   // Initialize rectangles state in the parent component
   const [rectangles, setRectangles] = useState([
 
@@ -31,8 +32,6 @@ export default function AnimationApp() {
 
   const [selectedRectangle, setSelectedRectangle] = useState(rectangles[0] || null);
 
-
-
   const [img, setImg] = useState(null);
 
 
@@ -51,13 +50,56 @@ export default function AnimationApp() {
   }, []);
 
 
+  {/*
+  const [keyframeData, setKeyframeData] = useState([
+    { keyframe: 1, rectangles: [...rectangles] },
+    { keyframe: 2, rectangles: [...rectangles] },
+    { keyframe: 3, rectangles: [...rectangles] },
+  ]);
+*/}
+
+  const [keyframeData, setKeyframeData] = useState([
+    {
+      keyframe: 1,
+      rectangles: [
+        { id: 'LightOrange', color: '#E2A04B', x: 416, y: 52, width: 76, height: 135, zIndex: 2 },
+        // color: '#D57835'
+        { id: 'Orange', color: `rgba(213, 120, 53, 50%`, x: 416, y: 68, width: 91, height: 119, zIndex: 3 },
+        { id: 'Yellow', color: '#EBC04B', x: 416, y: 91, width: 128, height: 96, zIndex: 4 },
+        { id: 'Pink', color: '#D770A0', x: 416, y: 148, width: 10, height: 39, zIndex: 5 },
+        // color: '#9F2B17',
+        { id: 'Brown', color: `rgba(159, 43, 23, 50%)`, x: 416, y: 128, width: 10, height: 10, zIndex: 6 }
+      ],
+    },
+    {
+      keyframe: 2,
+      rectangles: [
+        { id: 'LightOrange', color: '#E2A04B', x: 416, y: 52, width: 76, height: 135, zIndex: 2 },
+        // color: '#D57835'
+        { id: 'Orange', color: `rgba(213, 120, 53, 50%`, x: 416, y: 68, width: 91, height: 119, zIndex: 3 },
+        { id: 'Yellow', color: '#EBC04B', x: 416, y: 91, width: 128, height: 96, zIndex: 4 },
+        { id: 'Pink', color: '#D770A0', x: 416, y: 148, width: 50, height: 39, zIndex: 5 },
+        // color: '#9F2B17',
+        { id: 'Brown', color: `rgba(159, 43, 23, 50%)`, x: 416, y: 128, width: 20, height: 20, zIndex: 6 }
+      ],
+    },
+    { keyframe: 3, rectangles: [...rectangles] },
+  ]);
+
+
   return (
     <main className="container">
       <section>
         <CanvasComponent img={img} rectangles={rectangles} setRectangles={setRectangles} />
       </section>
       <section>
-        <Timeline rectangles={rectangles} />
+        <Timeline
+          rectangles={rectangles}
+          setRectangles={setRectangles}
+          keyframeData={keyframeData}
+          setKeyframeData={setKeyframeData}
+        />
+
       </section>
       <section>
         <RadioButtonsComponent rectangles={rectangles} setSelectedRectangle={setSelectedRectangle} selectedRectangle={selectedRectangle} />
@@ -69,6 +111,9 @@ export default function AnimationApp() {
             setSelectedRectangle={setSelectedRectangle}
             rectangles={rectangles}
             setRectangles={setRectangles}
+          //handleSliderChange={handleSliderChange}
+          // selectedKeyframe={selectedKeyframe}
+          // keyframeData={keyframeData}
           />
         )}
       </section>
