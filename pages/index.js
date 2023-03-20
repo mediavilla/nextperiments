@@ -86,12 +86,17 @@ export default function AnimationApp() {
     { keyframe: 3, rectangles: [...rectangles] },
   ]);
 
+  const [animationProgress, setAnimationProgress] = useState(0);
 
   return (
     <main className="container">
-      <section>
-        <CanvasComponent img={img} rectangles={rectangles} setRectangles={setRectangles} />
-      </section>
+      <CanvasComponent
+        img={img}
+        rectangles={rectangles}
+        setRectangles={setRectangles}
+        animationProgress={animationProgress}
+        setAnimationProgress={setAnimationProgress}
+      />
       <section>
         <Timeline
           rectangles={rectangles}
@@ -111,9 +116,6 @@ export default function AnimationApp() {
             setSelectedRectangle={setSelectedRectangle}
             rectangles={rectangles}
             setRectangles={setRectangles}
-          //handleSliderChange={handleSliderChange}
-          // selectedKeyframe={selectedKeyframe}
-          // keyframeData={keyframeData}
           />
         )}
       </section>
