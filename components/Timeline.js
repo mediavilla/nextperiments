@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 
 function Timeline() {
 
+    // GSAP ANIM?
     console.log("Timeline loading");
 
 
