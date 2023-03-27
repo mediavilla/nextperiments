@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 
-function Timeline() {
+function Timeline({ rectangles, keyframeData }) {
 
     // GSAP ANIM?
-    console.log("Timeline loading");
+
+
+    console.log("keyframeData", keyframeData);
 
     function handlePlayClick() {
         const firstKeyframe = keyframeData[0]; // Get the first keyframe
@@ -14,6 +16,16 @@ function Timeline() {
 
         Animation(elementId, width, height);
 
+    }
+
+    function setKeyframeData(prevKeyframeData) {
+        const updatedKeyframeData = [...prevKeyframeData];
+        const keyframeIndex = prevKeyframeData.findIndex(kf => kf.keyframe === secondKeyframe.keyframe);
+        updatedKeyframeData[keyframeIndex] = {
+            ...secondKeyframe,
+            rectangles: [...rectangles]
+        };
+        return updatedKeyframeData;
     }
 
 

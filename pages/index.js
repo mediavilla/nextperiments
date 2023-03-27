@@ -50,14 +50,16 @@ export default function AnimationApp() {
   }, []);
 
 
-  {/*
+
   const [keyframeData, setKeyframeData] = useState([
     { keyframe: 1, rectangles: [...rectangles] },
     { keyframe: 2, rectangles: [...rectangles] },
     { keyframe: 3, rectangles: [...rectangles] },
   ]);
-*/}
 
+
+
+  {/*
   const [keyframeData, setKeyframeData] = useState([
     {
       keyframe: 1,
@@ -85,6 +87,8 @@ export default function AnimationApp() {
     },
     { keyframe: 3, rectangles: [...rectangles] },
   ]);
+
+  */}
 
   const [animationProgress, setAnimationProgress] = useState(0);
 
