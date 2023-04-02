@@ -54,7 +54,7 @@ function CanvasComponent({ rectangles, img }) {
         drawAllRectangles();
 
 
-    }, [rectangles, img, ...rectangles.map((r) => [r.width, r.height]).flat()]); // Re-run the effect when the rectangles state changes
+    }, [rectangles, img]); // Re-run the effect when the rectangles state changes
 
 
     return (

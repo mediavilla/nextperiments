@@ -1,14 +1,6 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 
-function Timeline({ rectangles, keyframeData, saveKeyframeData, playAnimation }) {
-
-    // GSAP ANIM?
-
-
-    // console.log("keyframeData", keyframeData);
-    // console.log("RECTANGLES LIGHT ORANGE KF 0: ", keyframeData[0].rectangles[0]);
-    // console.log("RECTANGLES LIGHT ORANGE KF 2: ", keyframeData[1].rectangles[0]);
-
+function Timeline({ saveKeyframeData, playAnimation }) {
 
     return (
         <>
@@ -47,7 +39,7 @@ function Timeline({ rectangles, keyframeData, saveKeyframeData, playAnimation })
                 </div>
                 <div>
                     <a href="#" role="button" className="secondary outline" >
-                        End Keyframe 3"
+                        End Keyframe 3
                     </a>
 
                 </div>
