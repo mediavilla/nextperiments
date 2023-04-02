@@ -5,6 +5,7 @@ function CanvasComponent({ rectangles, img }) {
 
     // useEffect block for drawing the rectangles
     useEffect(() => {
+        // console.log("Rectangles updated:", rectangles);
         // Get the canvas element
         const canvas = canvasRef.current;
 
@@ -53,7 +54,7 @@ function CanvasComponent({ rectangles, img }) {
         drawAllRectangles();
 
 
-    }, [rectangles, img]); // Re-run the effect when the rectangles state changes
+    }, [rectangles, img, ...rectangles.map((r) => [r.width, r.height]).flat()]); // Re-run the effect when the rectangles state changes
 
 
     return (

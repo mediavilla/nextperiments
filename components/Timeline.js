@@ -1,45 +1,13 @@
 import React, { useState, useRef } from "react";
 
-function Timeline({ rectangles, keyframeData }) {
+function Timeline({ rectangles, keyframeData, saveKeyframeData, playAnimation }) {
 
     // GSAP ANIM?
 
 
-    console.log("keyframeData", keyframeData);
-
-    function handlePlayClick() {
-        const firstKeyframe = keyframeData[0]; // Get the first keyframe
-        const firstRectangle = firstKeyframe.rectangles[0]; // Get the first rectangle from the first keyframe
-        const elementId = firstRectangle.id; // Assign ID of the first rectangle to a variable
-        const width = firstRectangle.width; // Assign width of the first rectangle to a variable
-        const height = firstRectangle.height; // Assign height of the first rectangle to a variable
-
-        Animation(elementId, width, height);
-
-    }
-
-    function setKeyframeData(prevKeyframeData) {
-        const updatedKeyframeData = [...prevKeyframeData];
-        const keyframeIndex = prevKeyframeData.findIndex(kf => kf.keyframe === secondKeyframe.keyframe);
-        updatedKeyframeData[keyframeIndex] = {
-            ...secondKeyframe,
-            rectangles: [...rectangles]
-        };
-        return updatedKeyframeData;
-    }
-
-
-    function saveKeyframeData(keyframeIndex) {
-        setKeyframeData((prevKeyframeData) => {
-            const updatedKeyframeData = [...prevKeyframeData];
-            updatedKeyframeData[keyframeIndex - 1] = {
-                keyframe: keyframeIndex,
-                rectangles: [...rectangles],
-            };
-
-            return updatedKeyframeData;
-        });
-    }
+    // console.log("keyframeData", keyframeData);
+    // console.log("RECTANGLES LIGHT ORANGE KF 0: ", keyframeData[0].rectangles[0]);
+    // console.log("RECTANGLES LIGHT ORANGE KF 2: ", keyframeData[1].rectangles[0]);
 
 
     return (
@@ -51,7 +19,7 @@ function Timeline({ rectangles, keyframeData }) {
                         href="#"
                         role="button"
                         className="primary"
-                        onClick={handlePlayClick}
+                        onClick={playAnimation}
                     >
                         Play
                     </a>
