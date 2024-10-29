@@ -1,1 +1,1 @@
-Moving some scripts to React on Next.js
+Experiments on Next.js and react
